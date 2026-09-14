@@ -1,0 +1,106 @@
+{
+  "factory": {
+    "v": 1,
+    "kind": "fallforge-factory",
+    "layers": [
+      {
+        "name": "gate",
+        "url": "https://sjgant80-hub.github.io/fallforge-gate/",
+        "kernelHash": "404e5b287c58bf2ce83310b3c2701abd71ae182db0adf486291930759431da4a",
+        "killed": 93,
+        "total": 95
+      },
+      {
+        "name": "mint",
+        "url": "https://sjgant80-hub.github.io/fallforge-mint/",
+        "kernelHash": "7713e7242dc0a6a3f1af3b8257ee90fb90b29eb69430c36d2dc7c3ea123b28f8",
+        "killed": 79,
+        "total": 80
+      },
+      {
+        "name": "node",
+        "url": "https://sjgant80-hub.github.io/fallnode/",
+        "kernelHash": "b999ccec8ccfb806f90cc231e23067ec42f41d13fb6cacd2e232f13852efa7e0",
+        "killed": 61,
+        "total": 64
+      },
+      {
+        "name": "catalogue",
+        "url": "https://sjgant80-hub.github.io/fallforge-catalogue/",
+        "kernelHash": "2ee3a1cafb7ff27da781142a035b53168ece5e625930b48e83d183365489c488",
+        "killed": 71,
+        "total": 72
+      },
+      {
+        "name": "mesh",
+        "url": "https://sjgant80-hub.github.io/fallforge-mesh/",
+        "kernelHash": "47f4d76722894a9c27e56f2a426db635189fe0ea8efc283ef802a2af283b0e94",
+        "killed": 65,
+        "total": 66
+      }
+    ],
+    "scope": "each layer is proved by its own mutation gate; this manifest binds them into one chain",
+    "hash": "6122a6f2cec9145d7ee041b5f6be489d33eacce017d03939f483ce2ebf716bf4"
+  },
+  "provenance": {
+    "node": "triage-1b",
+    "intact": true,
+    "links": [
+      {
+        "link": "gate→mint",
+        "ok": true,
+        "of": "the gate receipt is inside the mint manifest"
+      },
+      {
+        "link": "mint→catalogue",
+        "ok": true,
+        "of": "the catalogue listing carries this manifest hash"
+      },
+      {
+        "link": "catalogue→mesh",
+        "ok": true,
+        "of": "the mesh member carries this manifest hash"
+      }
+    ],
+    "why": "unbroken: the proof the gate wrote is the proof the mesh relies on",
+    "receiptHash": "eaff080e1157f472aebcd4d8b3220ab596b752905ca28128d172372cdfd9ba86",
+    "manifestHash": "a6224303c927d40d46bae0c0c42a24ba321b71ff81b36c8c25a7020c99c1c60d"
+  },
+  "demands": [
+    {
+      "useCase": "support-triage",
+      "ok": true,
+      "served": true,
+      "action": "route-to-node",
+      "why": "a sovereign node already serves support-triage"
+    },
+    {
+      "useCase": "code-review",
+      "ok": true,
+      "served": true,
+      "action": "route-to-node",
+      "why": "a sovereign node already serves code-review"
+    },
+    {
+      "useCase": "legal-review",
+      "ok": true,
+      "served": false,
+      "action": "mint-opening",
+      "why": "no node serves legal-review yet — this is an opening the factory can mint"
+    },
+    {
+      "useCase": "finance-extract",
+      "ok": true,
+      "served": false,
+      "action": "mint-opening",
+      "why": "no node serves finance-extract yet — this is an opening the factory can mint"
+    },
+    {
+      "useCase": "doc-classify",
+      "ok": true,
+      "served": false,
+      "action": "mint-opening",
+      "why": "no node serves doc-classify yet — this is an opening the factory can mint"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FallForge Factory — the factory that runs itself</title>
+<meta name="description" content="The capstone of the sovereign-node factory: five gated layers — gate, mint, node, catalogue, mesh — composed into one body. The proof the gate wrote is the proof the mesh relies on: one unbroken provenance chain, verified in your browser across four repositories.">
+<style>
+  :root{
+    --bg:#0b0d10; --panel:#13161c; --line:#242a34; --ink:#eef1f6; --dim:#939db0;
+    --accent:#e6b34a; --accent2:#f3d488; --good:#3fbf8f; --bad:#f07862; --info:#5aa9e6;
+    --mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,Segoe UI,Roboto,sans-serif;padding:0 0 4rem}
+  .wrap{max-width:940px;margin:0 auto;padding:0 1rem}
+  header{padding:2rem 0 .8rem}
+  h1{font-size:1.7rem;letter-spacing:-.01em}
+  h1 .g{color:var(--accent)}
+  .sub{color:var(--dim);margin-top:.4rem;max-width:50rem}
+  h2{font-size:1.05rem;margin:1.8rem 0 .6rem}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;margin:.8rem 0}
+  .mono{font:.82rem var(--mono)} .dim{color:var(--dim)}
+  .badge{font:700 .7rem var(--mono);padding:.2rem .55rem;border-radius:20px;border:1px solid var(--line)}
+  .badge.ok{color:#08201a;background:var(--good);border-color:var(--good)}
+  .badge.bad{color:#fff;background:var(--bad);border-color:var(--bad)}
+  .badge.gold{color:#241c07;background:var(--accent);border-color:var(--accent)}
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem}
+  .layer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;text-align:center}
+  .layer .n{font:800 1rem var(--mono);color:var(--accent2)}
+  .layer .s{font:.75rem var(--mono);color:var(--good);margin-top:.2rem}
+  .layer .h{font:.62rem var(--mono);color:var(--dim);margin-top:.3rem;word-break:break-all}
+  .layer a{color:inherit;text-decoration:none}
+  .chain{display:flex;flex-direction:column;gap:.4rem}
+  .cl{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;align-items:center;padding:.6rem .9rem;background:var(--panel);border:1px solid var(--line);border-radius:10px;font:.82rem var(--mono)}
+  .cl .lk{color:var(--accent2);font-weight:700}
+  .cl .ok{color:var(--good)} .cl .no{color:var(--bad)}
+  .arrow{text-align:center;color:var(--dim);font:.9rem var(--mono)}
+  .demands{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.5rem}
+  .dm{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;font-size:.85rem;display:flex;justify-content:space-between;gap:.5rem}
+  .dm.served{border-color:var(--good)} .dm.open{border-color:var(--accent)}
+  ol.steps{margin:.3rem 0 0 1.2rem} ol.steps li{margin:.5rem 0;color:var(--dim)} ol.steps li b{color:var(--ink)}
+  ul.plain{margin:.3rem 0 0 1.1rem} ul.plain li{margin:.35rem 0;color:var(--dim)} ul.plain li b{color:var(--ink)}
+  footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--dim);font-size:.82rem}
+  footer a{color:var(--accent)}
+  code{font:.85em var(--mono);background:var(--panel);padding:.06em .3em;border-radius:4px}
+  .hashline{font:.7rem var(--mono);color:var(--dim);word-break:break-all;margin-top:.5rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>FallForge <span class="g">Factory</span> — the factory that runs itself</h1>
+  <p class="sub">The capstone of the sovereign-node factory. Five gated layers — <b>gate</b> proves, <b>mint</b> forges, <b>node</b> serves, <b>catalogue</b> shelves, <b>mesh</b> couples — composed into one body. The claim isn't a slogan: <b>the proof the gate wrote is the proof the mesh relies on</b>, one unbroken provenance chain, verified in your browser across four repositories.</p>
+</header>
+
+<h2>The five layers <span class="dim" style="font-size:.8rem">— each proved by its own mutation gate</span></h2>
+<div class="layers" id="layers"><div class="panel dim">loading…</div></div>
+<div class="hashline" id="factory-hash"></div>
+
+<h2>One unbroken chain <span class="dim" style="font-size:.8rem">— triage-1b, proved end to end</span></h2>
+<p class="dim" style="font-size:.88rem">A real minted node's proof, walked across four repos: the gate receipt lives inside the mint manifest; the manifest hash is the catalogue listing's; the listing's node is the mesh member carrying that same hash. Break any link and the factory says exactly where.</p>
+<div id="chain"><div class="panel dim">loading…</div></div>
+
+<h2>The seam — what the factory serves, and its openings</h2>
+<p class="dim" style="font-size:.88rem">A demand for a use-case is either served by a sovereign node already, or it's an <b>opening</b> the factory can mint — never faked by a node pretending to cover it.</p>
+<div class="demands" id="demands"><div class="panel dim">loading…</div></div>
+
+<h2>How the factory runs itself</h2>
+<div class="panel">
+  <ol class="steps">
+    <li><b>Every layer is proved the same way.</b> Each kernel is mutation-witnessed; survivors carry a written equivalence argument. The factory manifest binds all five kernel hashes and gate scores into one content-addressed record.</li>
+    <li><b>The proof composes.</b> A node minted by the mint carries the gate's receipt; the catalogue shelves that exact manifest; the mesh couples that exact node. One hash chains all four — this page checks it live.</li>
+    <li><b>A demand it can't serve is an opening, not a lie.</b> The seam routes a covered use-case to its node and flags an uncovered one for minting — the factory never invents a specialist it lacks.</li>
+    <li><b>The money rail stays human.</b> The whole node/compute rail is buildable and built; licensing and payments wait behind legal counsel. Nothing here bills anyone.</li>
+  </ol>
+</div>
+
+<h2>The honest limits</h2>
+<div class="panel">
+  <ul class="plain">
+    <li><b>v1 mints prompt-tuned nodes</b> (Modelfile-level); weight-level LoRA is v2, in the same gated stages.</li>
+    <li><b>Signatures prove the issuer's key, not their identity;</b> receipts and savings are scoped to their probe set and the buyer's own rates.</li>
+    <li><b>This capstone is a public composition surface — not the estate's private orchestrator.</b> It proves the factory chain; it does not run anyone's private mesh.</li>
+    <li><b>Not audited.</b> Five kernels, five gates, one chain — proof of construction, not a security certification.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>MIT · <a href="https://github.com/sjgant80-hub/fallforge-factory">source &amp; mutation gate</a> — the provenance, factory and seam code on this page is the gated <code>kernel.mjs</code> verbatim (injected, CI-diffed). The whole factory: <a href="https://sjgant80-hub.github.io/fallforge-gate/">gate</a> → <a href="https://sjgant80-hub.github.io/fallforge-mint/">mint</a> → <a href="https://sjgant80-hub.github.io/fallnode/">node</a> → <a href="https://sjgant80-hub.github.io/fallforge-catalogue/">catalogue</a> → <a href="https://sjgant80-hub.github.io/fallforge-mesh/">mesh</a> → <b>factory</b>.</p>
+</footer>
+</div>
+
+<script type="module">
+// ⟦KERNEL-BEGIN⟧ generated from kernel.mjs by make-page.mjs — do not edit here
+// FallForge Factory — the capstone kernel. Layer 6 of the sovereign-node factory: the factory
+// that runs itself. It composes the five layers into one body and PROVES the chain is unbroken —
+// a gate receipt's hash lives inside a mint manifest, whose hash is the catalogue listing's
+// manifestHash, whose node is a mesh member carrying that same manifest hash. One provenance
+// chain: the proof the gate wrote is the proof the mesh relies on, end to end. This kernel owns
+// the composition law; each layer's own kernel owns its own proof.
+// No I/O. Pure and total: garbage in → { ok:false, why }, never a throw.
+
+const LAYERS = Object.freeze(['gate', 'mint', 'node', 'catalogue', 'mesh']);
+
+const isStr = (v) => typeof v === 'string';
+const isInt = (v) => Number.isInteger(v);
+const isObj = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
+const HEX = /^[0-9a-f]+$/;
+const isHash = (v) => isStr(v) && v.length === 64 && HEX.test(v);
+
+// ── SHA-256 + canonical JSON (the estate's proven pair) ─────────────────────────────────────────
+const K256 = new Uint32Array([
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+]);
+
+function sha256(text) {
+  if (!isStr(text)) return { ok: false, why: 'sha256 takes a string' };
+  const data = new TextEncoder().encode(text);
+  const len = data.length;
+  const padded = new Uint8Array((((len + 8) >> 6) << 6) + 64);
+  padded.set(data);
+  padded[len] = 0x80;
+  const dv = new DataView(padded.buffer);
+  const bitLen = len * 8;
+  dv.setUint32(padded.length - 8, Math.floor(bitLen / 4294967296));
+  dv.setUint32(padded.length - 4, bitLen >>> 0);
+  let h0 = 0x6a09e667, h1 = 0xbb67ae85, h2 = 0x3c6ef372, h3 = 0xa54ff53a;
+  let h4 = 0x510e527f, h5 = 0x9b05688c, h6 = 0x1f83d9ab, h7 = 0x5be0cd19;
+  const w = new Uint32Array(64);
+  for (let i = 0; i < padded.length; i += 64) {
+    for (let t = 0; t < 16; t++) w[t] = dv.getUint32(i + t * 4);
+    for (let t = 16; t < 64; t++) {
+      const x = w[t - 15], y = w[t - 2];
+      const s0 = (((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3)) >>> 0;
+      const s1 = (((y >>> 17) | (y << 15)) ^ ((y >>> 19) | (y << 13)) ^ (y >>> 10)) >>> 0;
+      w[t] = (w[t - 16] + s0 + w[t - 7] + s1) >>> 0;
+    }
+    let a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, hh = h7;
+    for (let t = 0; t < 64; t++) {
+      const S1 = (((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7))) >>> 0;
+      const ch = ((e & f) ^ (~e & g)) >>> 0;
+      const t1 = (hh + S1 + ch + K256[t] + w[t]) >>> 0;
+      const S0 = (((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10))) >>> 0;
+      const maj = ((a & b) ^ (a & c) ^ (b & c)) >>> 0;
+      const t2 = (S0 + maj) >>> 0;
+      hh = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+    }
+    h0 = (h0 + a) >>> 0; h1 = (h1 + b) >>> 0; h2 = (h2 + c) >>> 0; h3 = (h3 + d) >>> 0;
+    h4 = (h4 + e) >>> 0; h5 = (h5 + f) >>> 0; h6 = (h6 + g) >>> 0; h7 = (h7 + hh) >>> 0;
+  }
+  const hex = (n) => n.toString(16).padStart(8, '0');
+  return { ok: true, hash: hex(h0) + hex(h1) + hex(h2) + hex(h3) + hex(h4) + hex(h5) + hex(h6) + hex(h7) };
+}
+
+function canon(v) {
+  if (v === null || typeof v === 'number' || typeof v === 'boolean') return JSON.stringify(v);
+  if (typeof v === 'string') return JSON.stringify(v);
+  if (Array.isArray(v)) return '[' + v.map(canon).join(',') + ']';
+  if (typeof v === 'object') return '{' + Object.keys(v).sort().map((k) => JSON.stringify(k) + ':' + canon(v[k])).join(',') + '}';
+  return '"?"';
+}
+
+// ── the provenance chain: the proof the gate wrote is the proof the mesh relies on ──────────────
+/** verifyProvenance({ node, receiptHash, manifest, listing, meshMember }) — walk the four links
+ *  a minted node's proof travels. Each link is a hash equality; a break is named, in order. */
+function verifyProvenance(p) {
+  if (!isObj(p)) return { ok: false, why: 'provenance takes { node, receiptHash, manifest, listing, meshMember }' };
+  if (!isStr(p.node) || p.node.length === 0) return { ok: false, why: 'provenance needs a node name' };
+  if (!isHash(p.receiptHash)) return { ok: false, why: 'receiptHash must be a 64-hex hash' };
+  if (!isObj(p.manifest) || !isHash(p.manifest.hash) || !Array.isArray(p.manifest.receipts)) return { ok: false, why: 'manifest needs a hash and a receipts array' };
+  if (!isObj(p.listing) || !isHash(p.listing.manifestHash) || !isStr(p.listing.node)) return { ok: false, why: 'listing needs a manifestHash and a node' };
+  if (!isObj(p.meshMember) || !isStr(p.meshMember.node) || !isHash(p.meshMember.manifestHash)) return { ok: false, why: 'meshMember needs a node and a manifestHash' };
+
+  const links = [];
+  // 1 · the gate receipt is one of the receipts the mint manifest was built from
+  const inManifest = p.manifest.receipts.some((r) => isObj(r) && r.hash === p.receiptHash);
+  links.push({ link: 'gate→mint', ok: inManifest, of: 'the gate receipt is inside the mint manifest' });
+  if (!inManifest) return { ok: true, intact: false, brokenAt: 'gate→mint', links, why: 'the receipt is not among the manifest’s receipts — the mint did not gate this proof' };
+  // 2 · the catalogue listing points at exactly this manifest
+  const listingMatches = p.listing.manifestHash === p.manifest.hash && p.listing.node === p.node;
+  links.push({ link: 'mint→catalogue', ok: listingMatches, of: 'the catalogue listing carries this manifest hash' });
+  if (!listingMatches) return { ok: true, intact: false, brokenAt: 'mint→catalogue', links, why: 'the listing does not point at this manifest — the shelf lists a different build' };
+  // 3 · the mesh member is this node, carrying the same manifest hash
+  const meshMatches = p.meshMember.node === p.node && p.meshMember.manifestHash === p.manifest.hash;
+  links.push({ link: 'catalogue→mesh', ok: meshMatches, of: 'the mesh member carries this manifest hash' });
+  if (!meshMatches) return { ok: true, intact: false, brokenAt: 'catalogue→mesh', links, why: 'the mesh member does not carry this manifest — the coupled node is not the shelved one' };
+
+  return { ok: true, intact: true, node: p.node, links, why: 'unbroken: the proof the gate wrote is the proof the mesh relies on' };
+}
+
+// ── the factory manifest: the five layers as one body, content-addressed ────────────────────────
+function validLayer(l) {
+  if (!isObj(l)) return 'a layer is an object';
+  if (!isStr(l.name) || !LAYERS.includes(l.name)) return 'layer name must be one of ' + LAYERS.join(', ');
+  if (!isStr(l.url) || !/^https:\/\//.test(l.url)) return 'layer ' + l.name + ' needs an https url';
+  if (!isHash(l.kernelHash)) return 'layer ' + l.name + ' needs a 64-hex kernel hash';
+  if (!isInt(l.killed) || l.killed < 0) return 'layer ' + l.name + ' needs a non-negative killed count';
+  if (!isInt(l.total) || l.total < l.killed) return 'layer ' + l.name + ' total must be at least its killed count';
+  return null;
+}
+
+function buildFactory(layers) {
+  if (!Array.isArray(layers)) return { ok: false, why: 'the factory takes an array of layers' };
+  if (layers.length !== LAYERS.length) return { ok: false, why: 'the factory has exactly ' + LAYERS.length + ' layers' };
+  const seen = new Set();
+  const clean = [];
+  for (const [i, l] of layers.entries()) {
+    const bad = validLayer(l);
+    if (bad) return { ok: false, why: 'layer ' + i + ': ' + bad };
+    if (seen.has(l.name)) return { ok: false, why: 'duplicate layer: ' + l.name };
+    seen.add(l.name);
+    clean.push({ name: l.name, url: l.url, kernelHash: l.kernelHash, killed: l.killed, total: l.total });
+  }
+  // exactly LAYERS.length distinct entries, each a valid LAYERS name → by pigeonhole all are present,
+  // so no separate "missing layer" check is needed (and it would only shadow the name-validity guard)
+  // keep the layers in factory order (gate→mint→node→catalogue→mesh), not sorted alphabetically
+  clean.sort((a, b) => LAYERS.indexOf(a.name) - LAYERS.indexOf(b.name));
+  const body = { v: 1, kind: 'fallforge-factory', layers: clean,
+    scope: 'each layer is proved by its own mutation gate; this manifest binds them into one chain' };
+  const h = sha256(canon(body));
+  if (!h.ok) return { ok: false, why: h.why };
+  return { ok: true, factory: { ...body, hash: h.hash } };
+}
+
+function verifyFactory(f) {
+  if (!isObj(f) || f.kind !== 'fallforge-factory' || !isStr(f.hash)) return { ok: false, why: 'not a fallforge factory' };
+  const body = { ...f };
+  delete body.hash;
+  const h = sha256(canon(body));
+  if (!h.ok) return { ok: false, why: h.why };
+  if (h.hash !== f.hash) return { ok: true, valid: false, why: 'hash mismatch — the factory does not match its own layers' };
+  if (!Array.isArray(f.layers) || f.layers.length !== LAYERS.length) return { ok: true, valid: false, why: 'the factory must carry all ' + LAYERS.length + ' layers' };
+  return { ok: true, valid: true, why: 'factory intact — five gated layers, one chain' };
+}
+
+/** demand(useCase, servedUseCases) — the seam: a demand is served by the factory only if a
+ *  minted node covers it; otherwise it is an OPENING (mint one), never faked. */
+function demand(useCase, servedUseCases) {
+  if (!isStr(useCase) || useCase.length === 0) return { ok: false, why: 'a demand names a use-case' };
+  if (!Array.isArray(servedUseCases)) return { ok: false, why: 'servedUseCases is an array' };
+  for (const u of servedUseCases) if (!isStr(u)) return { ok: false, why: 'each served use-case is a string' };
+  const served = servedUseCases.includes(useCase);
+  return { ok: true, served, action: served ? 'route-to-node' : 'mint-opening',
+    why: served ? 'a sovereign node already serves ' + useCase : 'no node serves ' + useCase + ' yet — this is an opening the factory can mint' };
+}
+// ⟦KERNEL-END⟧
+
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  async function load() {
+    let data = null;
+    try { data = JSON.parse(await (await fetch('factory/factory.json', { cache: 'no-store' })).text()); } catch (e) {}
+    if (!data) { $('layers').innerHTML = '<div class="panel dim">factory unavailable</div>'; return; }
+
+    const vf = verifyFactory(data.factory);
+    $('layers').innerHTML = data.factory.layers.map((l) =>
+      '<div class="layer"><a href="' + esc(l.url) + '"><div class="n">' + esc(l.name) + '</div>' +
+      '<div class="s">' + l.killed + '/' + l.total + ' killed</div>' +
+      '<div class="h">' + esc(l.kernelHash.slice(0, 10)) + '…</div></a></div>').join('');
+    $('factory-hash').innerHTML = (vf.ok && vf.valid === true ? '<span class="badge ok">FACTORY MANIFEST VERIFIED</span>' : '<span class="badge bad">MANIFEST BROKEN</span>') +
+      ' sha256 ' + esc(data.factory.hash);
+
+    // rebuild the provenance verdict live from the artifact hashes the factory recorded
+    const p = data.provenance;
+    const rows = p.links.map((lk) => '<div class="cl"><span class="lk">' + esc(lk.link) + '</span><span>' + esc(lk.of) + ' <span class="' + (lk.ok ? 'ok' : 'no') + '">' + (lk.ok ? '✓' : '✗') + '</span></span></div>');
+    $('chain').innerHTML = '<div class="chain">' +
+      '<div class="cl"><span>gate receipt</span><span class="mono dim">' + esc(p.receiptHash.slice(0, 16)) + '…</span></div>' +
+      '<div class="arrow">↓</div>' + rows.join('<div class="arrow">↓</div>') +
+      '<div class="panel" style="margin:.4rem 0 0;text-align:center">' +
+      (p.intact ? '<span class="badge gold">CHAIN UNBROKEN</span> ' + esc(p.why) : '<span class="badge bad">BROKEN</span> ' + esc(p.why)) + '</div></div>';
+
+    $('demands').innerHTML = data.demands.map((d) => {
+      const r = demand(d.useCase, data.demands.filter((x) => x.served).map((x) => x.useCase));   // recompute live
+      return '<div class="dm ' + (r.served ? 'served' : 'open') + '"><span>' + esc(d.useCase) + '</span><span>' +
+        (r.served ? '<span class="badge ok">SERVED</span>' : '<span class="badge gold">OPENING</span>') + '</span></div>';
+    }).join('');
+  }
+  load();
+})();
+</script>
+</body>
+</html>
