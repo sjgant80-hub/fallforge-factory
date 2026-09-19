@@ -1,5 +1,13 @@
 # FallForge Factory
 
+> **Superseded, not deleted.** This repo's `verifyProvenance` hash-walk pattern is the direct
+> ancestor of the converging [fallforge](https://github.com/sjgant80-hub/fallforge) hub's own
+> provenance organ (`chain.html`), generalized to the current, shorter chain: a
+> [fallforgemint](https://github.com/sjgant80-hub/fallforgemint) manifest → a
+> [fallforge-catalogue](https://github.com/sjgant80-hub/fallforge-catalogue) listing → served
+> ([fallnode](https://github.com/sjgant80-hub/fallnode)) or audited (Veridia). This page stays live
+> and gated as a historical record of the original five-layer factory's capstone.
+
 **LIVE: https://sjgant80-hub.github.io/fallforge-factory/**
 
 The capstone of the sovereign-node factory — the factory that runs itself. Five gated layers
